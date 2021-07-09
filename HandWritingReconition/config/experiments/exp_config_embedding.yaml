@@ -1,0 +1,23 @@
+DATASET:
+  SOURCE: Inner
+  DIR: dataset
+  TRAIN_DIR: "HandWritingCategory/dataset/train"
+  VALID_DIR: "HandWritingCategory/dataset/valid"
+  TEST_DIR: "HandWritingCategory/dataset/test"
+  IMAGE_HEIGHT: 67
+  IMAGE_WIDTH: 120
+  CHANNELS: 3
+
+MODEL:
+  BACKBONE: resnet18 #resnet34 resnet50 resnet101 resnet152
+  EMBEDDING_SIZE: 800
+  NUM_CLASSES: 800
+
+TRAINING:
+  EPOCH     : 2
+  BATCH_SIZE: 10        # Batch size.
+  LEARNING_RATE: 0.001 # Learning rate.
+  SAVE_MODEL_DIR: "/Users/timshieh/Documents/HandWritingCategory/HandWritingCategory/saved_model/resnet18_saved_model/model"
+
+TESTING:
+  BATCH_SIZE: 100        # Batch size.

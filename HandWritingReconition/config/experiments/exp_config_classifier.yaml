@@ -1,0 +1,27 @@
+DATASET:
+  SOURCE: Inner
+  DIR: dataset
+  TRAIN_DIR:  "HandWritingDataset\\Esun_relabel\\ESun_AI_Contest_traindata_push_10_percentage_dat_to_801_copy_data_split_add801\\train" #"exclude_dirty_dataset\\split_padding_train_category\\train" #"exclude_dirty_dataset_add_cleaned_data\\split_padding_train_category\\train"
+  VALID_DIR:  "HandWritingDataset\\Esun_relabel\\ESun_AI_Contest_traindata_push_10_percentage_dat_to_801_copy_data_split_add801\\test" # "exclude_dirty_dataset\\split_padding_train_category\\valid" #"exclude_dirty_dataset_add_cleaned_data\\split_padding_train_category\\valid"
+  TEST_DIR:   "HandWritingDataset\\Esun_relabel\\ESun_AI_Contest_traindata_push_10_percentage_dat_to_801_copy_data_split_add801\\test" # "exclude_dirty_dataset\\split_padding_train_category\\test" #"exclude_dirty_dataset_add_cleaned_data\\split_padding_train_category\\test"
+  IMAGE_HEIGHT: 224 #67
+  IMAGE_WIDTH: 224 #120
+  CHANNELS: 3
+
+MODEL:
+  BACKBONE: resnet18 #resnet18 resnet34 resnet50 resnet101 resnet152
+
+  BACKBONE_OUTPUT_SIZE: 512
+  NUM_CLASSES: 801
+
+TRAINING:
+  EPOCH     : 2
+  BATCH_SIZE: 32        # Batch size.
+  LEARNING_RATE: 0.0005 # Learning rate. 0.001
+  SAVE_MODEL_DIR: "HandWritingReconition\\saved_model\\resnet18_saved_model_224_224_SOTA_add801_retrain1\\model"  #/Users/timshieh/Documents/HandWritingCategory/HandWritingCategory/saved_model/resnet34_saved_model/model"  "/Users/timshieh/Documents/HandWritingCategory/HandWritingCategory/saved_model/resnet18_saved_model/model"
+  LOSS: sparse_category_loss #"balance_loss"  # sparse_category_loss 
+  SAVE_TIMES: 2
+  RETRAIN_MODEL_DIR: "HandWritingReconition\\saved_model\\resnet18_saved_model_224_224_SOTA\\model"
+
+TESTING:
+  BATCH_SIZE: 100        # Batch size.
