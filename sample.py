@@ -36,7 +36,7 @@ def check_data_positive_negative_rate(cfg):
 
 if __name__ == '__main__':
     import os
-    config_file=f"HandWritingReconition{os.sep}config{os.sep}experiments{os.sep}exp_config_classifier.yaml"
+    config_file='/Users/timshieh/Documents/Reconition_Github/E.SunBankOCR/training_config.yaml'
     cfg = load_config(config_file)
     # 模型訓練
     image_config.image_height = cfg.DATASET.IMAGE_HEIGHT
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     image_config.channels = cfg.DATASET.CHANNELS
     print(cfg)
     alpha,beta = check_data_positive_negative_rate(cfg)
-    classifier_train(cfg, alpha, beta, retrain=True)
+    classifier_train(cfg, alpha, beta, retrain=False)
     # develop_embedding_train(cfg)
 
     #評估
