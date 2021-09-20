@@ -1,7 +1,5 @@
 import os
 import random
-
-
 import shutil
 
 
@@ -25,7 +23,8 @@ class SplitDataset():
         self.index_label_dict = {}
 
         self.show_progress = show_progress
-
+        if not os.path.exists(self.saved_dataset_dir):
+            os.mkdir(self.saved_dataset_dir)
         if not os.path.exists(self.saved_train_dir):
             os.mkdir(self.saved_train_dir)
         if not os.path.exists(self.saved_test_dir):
