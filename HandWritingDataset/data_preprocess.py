@@ -36,6 +36,8 @@ class ESunHandWritingPreprocess(AllocationDataToDifferentFolder):
                 line = line.replace("\n","")
                 vocab_dict[line]=str(count)
                 count = count+1
+        if not os.path.isdir(self.destination_folder_path):
+            os.mkdir(self.destination_folder_path)
         for word, index in vocab_dict.items():
             complete_path = os.path.join(self.destination_folder_path,index)
             if not os.path.isdir(complete_path):
