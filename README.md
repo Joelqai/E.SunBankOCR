@@ -7,5 +7,5 @@
 # 2.修改training_config.yaml
 - 調整內部的 TRAIN_DIR,VALID_DIR,TEST_DIR,也可以調整backbone
 # 3.執行sample.py進行訓練
-- 會根據給入的yaml進行資料匯入,模型建構,並開始訓練模型
+- 要記得修改sample.py內部的config_file變數,給入training_config.yaml進行資料匯入,模型建構,並開始訓練模型
 
