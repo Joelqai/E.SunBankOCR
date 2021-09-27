@@ -1,3 +1,5 @@
+## 參考
+https://github.com/calmisential/TensorFlow2.0_ResNet
 ## 環境建置
 - pip install -r requirement.txt
 
