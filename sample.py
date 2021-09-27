@@ -4,6 +4,7 @@ from HandWritingReconition.train.embedding_trainer import EmbeddingTrainer
 from HandWritingReconition.external import image_config 
 from HandWritingReconition.evaluate import evaluation
 import os
+import numpy as np
 
 def load_config(config_file):
     cfg = get_cfg_defaults()
@@ -21,12 +22,17 @@ def develop_embedding_train(cfg):
     trainer.train()
 
 def check_data_positive_negative_rate(cfg):
-    train_path = cfg.DATASET.TRAIN_DIR
+    train_paths = cfg.DATASET.TRAIN_DIR
     collect_data_size= []
-    for i in range(cfg.MODEL.NUM_CLASSES):
-        path = os.path.join(train_path,str(i))
-        collect_data_size.append(len(os.listdir(path)))
+    for train_path in train_paths:
+        data_size = []
+        for i in range(cfg.MODEL.NUM_CLASSES):
+            path = os.path.join(train_path,str(i))
+            data_size.append(len(os.listdir(path)))
+        collect_data_size.append(data_size)
+    collect_data_size = np.sum(collect_data_size, axis=0).tolist()
     print(collect_data_size)
+    print(sum(collect_data_size))
     total_num = sum(collect_data_size)
     alpha = [(total_num-class_num)/total_num for class_num in collect_data_size]
     beta = [(class_num)/total_num for class_num in collect_data_size]
@@ -49,10 +55,17 @@ if __name__ == '__main__':
 
     #評估
     con_mat = evaluation(cfg)
-    import json
-    with open("result_224_224_train_valid_test_8_0_2_0relabel_resnet50.json","w") as fp:
-        con_mat = con_mat.tolist()
-        json.dump(con_mat,fp)
+
+    import numpy as np
+    print(con_mat)
+    identity = np.identity(800)
+    accuracy = np.sum(con_mat*identity)/np.sum(con_mat)
+    print("accuracy", accuracy)
+
+    # import json
+    # with open("result_224_224_train_valid_test_8_0_2_0relabel_resnet50.json","w") as fp:
+    #     con_mat = con_mat.tolist()
+    #     json.dump(con_mat,fp)
     
 
 
