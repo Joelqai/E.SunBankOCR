@@ -56,13 +56,15 @@ class ClassifierTrainer:
         train_loss(loss)
         train_accuracy(labels, predictions)
 
-    @tf.function
+    # @tf.function
     def valid_step(self, images, labels, model, loss_object, valid_loss, valid_accuracy):
         predictions = model(images, training=False)
         v_loss = loss_object(labels, predictions)
 
         valid_loss(v_loss)
         valid_accuracy(labels, predictions)
+        print("valid labels     ", labels)
+        print("valid predictions", tf.math.argmax(predictions,axis=1))
 
     def train(self):
         # GPU settings
@@ -124,7 +126,7 @@ class ClassifierTrainer:
                                                                     train_loss.result(),
                                                                     train_accuracy.result(),
                                                                     valid_loss.result(),
-                                                                    valid_accuracy.result()), file=open(f"retrain{self.config.MODEL.BACKBONE}_{self.config.TRAINING.LOSS}_{self.config.TRAINING.EPOCH}_train_refine_all_data_patch_data.txt", "a+"))
+                                                                    valid_accuracy.result()), file=open(f"{self.config.MODEL.BACKBONE}_{self.config.TRAINING.LOSS}_{self.config.TRAINING.EPOCH}_train_office_data.txt", "a+"))
 
             # if (epoch+1)%math.ceil(self.config.TRAINING.EPOCH/self.config.TRAINING.SAVE_TIMES) == 0:
             #     temp = self.config.TRAINING.SAVE_MODEL_DIR
