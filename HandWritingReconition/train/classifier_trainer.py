@@ -119,14 +119,14 @@ class ClassifierTrainer:
             if (epoch+1)%math.ceil(self.config.TRAINING.EPOCH/self.config.TRAINING.SAVE_TIMES)==0:
                 for valid_images, valid_labels in valid_dataset:
                     self.valid_step(valid_images, valid_labels, model, loss_object, valid_loss, valid_accuracy)
-
+            info = self.config.TRAINING.SAVE_MODEL_DIR.split("/")[-2]
             print("Epoch: {}/{}, train loss: {:.5f}, train accuracy: {:.5f}, "
                 "valid loss: {:.5f}, valid accuracy: {:.5f}".format(epoch + 1,
                                                                     self.config.TRAINING.EPOCH,
                                                                     train_loss.result(),
                                                                     train_accuracy.result(),
                                                                     valid_loss.result(),
-                                                                    valid_accuracy.result()), file=open(f"{self.config.MODEL.BACKBONE}_{self.config.TRAINING.LOSS}_{self.config.TRAINING.EPOCH}_train_office_data.txt", "a+"))
+                                                                    valid_accuracy.result()), file=open(f"{self.config.MODEL.BACKBONE}_{self.config.TRAINING.LOSS}_{self.config.TRAINING.EPOCH}_{info}.txt", "a+"))
 
             # if (epoch+1)%math.ceil(self.config.TRAINING.EPOCH/self.config.TRAINING.SAVE_TIMES) == 0:
             #     temp = self.config.TRAINING.SAVE_MODEL_DIR
