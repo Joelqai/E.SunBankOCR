@@ -68,13 +68,13 @@ class ClassifierTrainer:
 
     def train(self):
         # GPU settings
-        gpus = tf.config.experimental.list_physical_devices('GPU')
-        if gpus:
-            for gpu in gpus:
+        # gpus = tf.config.experimental.list_physical_devices('GPU')
+        # if gpus:
+        #     for gpu in gpus:
                 # tf.config.experimental.set_memory_growth(gpu, True)
-                print("=====")
-                print("get_gpu")
-                print("=====")
+                # print("=====")
+                # print("get_gpu")
+                # print("=====")
             # get the original_dataset
         
         train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets(self.config)
