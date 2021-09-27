@@ -19,9 +19,22 @@ def load_and_preprocess_image(img_path):
     return img
 
 def get_images_and_labels(data_root_dir):
+    print("data_root_dir",data_root_dir)
+    print(os.listdir(data_root_dir))
+    data_root = pathlib.Path(data_root_dir)
+    all_image_path = [str(path) for path in list(data_root.glob('*/*'))]
+    # print(all_image_path)
+    #get label
+    all_image_label = list(map(lambda image_path:int(image_path.split(os.sep)[-2]), all_image_path))
+    # print(all_image_label)
+    return all_image_path, all_image_label
+
+
+def old_get_images_and_labels(data_root_dir):
     # get all images' paths (format: string)
     print("data_root_dir",data_root_dir)
     data_root = pathlib.Path(data_root_dir)
+    print("data_root",list(data_root.glob('*/*')))
     all_image_path = [str(path) for path in list(data_root.glob('*/*'))]
     # get labels' names
     label_names = sorted(item.name for item in data_root.glob('*/'))
@@ -37,11 +50,17 @@ def get_images_and_labels(data_root_dir):
 
 
 def get_dataset(dataset_root_dir):
-    all_image_path, all_image_label = get_images_and_labels(data_root_dir=dataset_root_dir)
+    all_image_path=[]
+    all_image_label=[]
+    for single_dataset_root_dir in dataset_root_dir:
+        collect_image_path, collect_image_label = get_images_and_labels(data_root_dir=single_dataset_root_dir)
+        all_image_path.extend(collect_image_path)
+        all_image_label.extend(collect_image_label)
     # print("image_path: {}".format(all_image_path[:]))
     # print("image_label: {}".format(all_image_label[:]))
     
     print("before",all_image_path[:3])
+    print("before",all_image_label[:3])
     # shuffle data
     combine = list(zip(all_image_path,all_image_label))
     random.shuffle(combine)
@@ -49,6 +68,7 @@ def get_dataset(dataset_root_dir):
     all_image_path = list(all_image_path)
     all_image_label = list(all_image_label)
     print("after",all_image_path[:3])
+    print("after",all_image_label[:3])
 
     # load the dataset and preprocess images
     image_dataset = tf.data.Dataset.from_tensor_slices(all_image_path).map(load_and_preprocess_image)
@@ -81,7 +101,7 @@ if __name__ == "__main__":
     #自己先random
     import os
     # print(os.getcwd())
-    dataset_root_dir = "D:\\HandWritingReconition\\new_dataset_224_224\\split_padding_train_category_4_2_4\\train"
+    dataset_root_dir = '/Users/timshieh/Documents/Reconition_Github/E.SunBankOCR/train_data/valid'
     image_paths, image_labels = get_images_and_labels(data_root_dir=dataset_root_dir)
     print(image_paths[:3])
     print(image_labels[:3])
