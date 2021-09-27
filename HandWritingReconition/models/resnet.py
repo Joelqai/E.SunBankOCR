@@ -43,9 +43,9 @@ class ResNetTypeI(tf.keras.Model):
         x = self.layer4(x, training=training)
         print("look shape", x.shape)
         output = self.avgpool(x)
-        print("look shape", output.shape)
+        # print("look shape", output.shape)
         # output = self.fc1(x)
-        print("look shape", output.shape)
+        # print("look shape", output.shape)
         # output = self.fc2(output)
 
 
