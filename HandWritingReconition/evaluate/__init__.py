@@ -20,11 +20,13 @@ def test_step(images, labels, model, loss_object, test_loss, test_accuracy):
 
 def evaluation(config):
     # GPU settings
-    # gpus = tf.config.experimental.list_physical_devices('GPU')
-    # if gpus:
-    #     for gpu in gpus:
-    #         tf.config.experimental.set_memory_growth(gpu, True)
-
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        try:
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+        except:
+            pass
     print("開始進行測試~~~~~")
     # get the original_dataset
     train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets(config)
