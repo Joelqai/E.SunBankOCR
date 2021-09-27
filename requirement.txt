@@ -1,2 +1,6 @@
 tensorflow==2.0.0
 yacs==0.1.8
+jupyterlab==3.1.12
+Pillow==8.3.2
+matplotlib==3.4.3
+opencv-python==4.5.1.48
