@@ -9,3 +9,6 @@
 #1. 補圖補成黑色，結果降低準度
 #2. 自己親筆寫字測試程式碼做特徵工程(人工挑字)
 #3. 最後還自己做了上傳功能的小工具
+
+
+![image](https://user-images.githubusercontent.com/79303965/172314787-134674cc-d71a-4f8b-b68c-e47512fe8c4a.png)
