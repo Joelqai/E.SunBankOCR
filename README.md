@@ -11,7 +11,7 @@
 #3. 最後還自己做了上傳功能的小工具
 
 
-玉山人工智慧挑戰賽2021夏季賽(已結束)
+##玉山人工智慧挑戰賽2021夏季賽(已結束)
 
-![image]()
-![image]()
+![image](https://github.com/Joelqai/E.SunBankOCR/blob/master/HandWritingDataset/cmp14_Evaluation_1.png)
+![image](https://github.com/Joelqai/E.SunBankOCR/blob/master/HandWritingDataset/cmp14_Evaluation_2.png))
