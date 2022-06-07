@@ -11,4 +11,7 @@
 #3. 最後還自己做了上傳功能的小工具
 
 
-![image](https://user-images.githubusercontent.com/79303965/172314787-134674cc-d71a-4f8b-b68c-e47512fe8c4a.png)
+玉山人工智慧挑戰賽2021夏季賽(已結束)
+
+![image]()
+![image]()
